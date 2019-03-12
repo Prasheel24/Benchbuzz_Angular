@@ -1,0 +1,80 @@
+
+h1 {
+    color: #369;
+    font-family: Arial Rounded MT;
+    font-size: 250%;
+}
+
+header {
+    color: white;
+    font-family: 'Arial Rounded MT';
+    font-size: medium;
+}
+/*body {
+    overflow-y:scroll;
+}*/
+table {
+    background-color: white;
+}
+
+td {
+    color: cornflowerblue;
+}
+
+label {
+    color: dimgrey;
+}
+
+body {
+    /*background-color:burlywood;*/
+    background-image: url(assets/images/background_all.jpg);
+    position: relative;
+    height:70vh;
+}
+
+.loader {
+    width: 10%;
+    height: 10%;
+    align-items: center;
+    text-align: center;
+    margin-left: 44%;
+}
+
+.btn-round-lg {
+    border-radius: 23px;
+    
+    width: 100%;
+}
+
+.btn-round {
+    border-radius: 17px;
+    
+    width: 100%;
+}
+
+.btn-round-sm {
+    border-radius: 15px;
+    width: 100%;
+}
+
+.btn-round-xs {
+    border-radius: 11px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+}
+
+img {
+    width: 9em;
+    height: auto;
+}
+
+.modal {
+    top: 30%;
+}
+
+modal.fade.modal-dialog-center .modal-content-wrap {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0px !important;
+}

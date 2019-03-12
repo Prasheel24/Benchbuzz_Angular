@@ -1,0 +1,135 @@
+<!-- <div style="text-align:center"><label style="color:white"></label></div>
+<div class="alert alert-info">
+        <strong>{{inputText}}!!</strong>
+      </div> -->
+
+<section id="main-content" ng-controller="mainPageCtrl">
+    <div class="row" style="text-align:right;align-items: right;margin-right:5%">
+        <label *ngIf="inputText" style="color:white;font-size: small;font-family: 'Arial Rounded MT';">User : {{inputText}} | <a (click)="removeCookie()" style="color:greenyellow">Logout</a></label>
+      
+    </div>
+  <div class="container" style="text-align:center;padding-left:7%;padding-right:5%">
+      <a routerLinkActive="active" (click)="showDialog = !showDialog" style="color:white">
+          <div class="square">
+              <div class="content" style="position: absolute;top: 50%; left: 50%;transform: translate(-50%,-50%);">
+                  <div class="table">
+                      <div class="table-cell">
+
+                          <img src="assets/images/ic_search_white_png.png" style="height:5em"/>
+                          <br />
+                          <p style="font-size: 80%;">Find an Assignment</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </a>
+
+      <div class="square">
+          <div class="content" style="position: absolute;top: 50%; left: 50%;transform: translate(-50%,-50%);">
+              <div class="table">
+                  <div class="table-cell">
+                      <a routerLinkActive="active" routerLink="/applicationStatus" style="color:white">
+                          <img src="assets/images/ic_app_status_white_png.png" style="width:100%;height:99%" />
+                          <br />
+                          <p style="font-size: 80%;">Application Status</p>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="square">
+          <div class="content" style="position: absolute;top: 50%; left: 50%;transform: translate(-50%,-50%);">
+              <div class="table">
+                  <div class="table-cell ">
+                      <a routerLinkActive="active" routerLink="/faq" style="color:white">
+                          <img src="assets/images/ic_faq_white_png.png" style="width:100%;height:99%" />
+                          <br />
+                          <p style="font-size: 80%;">FAQ & Imp Links</p>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="square">
+          <div class="content" style="position: absolute;top: 50%; left: 50%;transform: translate(-50%,-50%);">
+              <div class="table">
+                  <div class="table-cell">
+                      <a routerLinkActive="active" routerLink="/myfavs" style="color:white">
+
+                          <img src="assets/images/fav.png" style="width:70%;height:70%" />
+                          <br />
+                          <p style="font-size: 80%;">My Favourites</p>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+          <div class="square" style="width:93%">
+              <div class="content" style="position: absolute;top: 50%; left: 50%;transform: translate(-50%,-50%);">
+                  <div class="table">
+                      <div class="table-cell">
+                          <a routerLinkActive="active" routerLink="/update" style="color:white">
+
+                              <img src="assets/images/ic_update_profile_white_png.png" style="width:50%;height:50%" />
+                              <br />
+                              <p style="font-size: 80%;">Update Profile</p>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>                  
+  </div>
+  
+  <!-- <div class="container">
+      <div tabindex="-5" class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+
+              <div class="modal-content">
+                  <div class="modal-header " style="background:#ffffff;">
+                      <div style="width:auto">
+                          <label class="modal-title" style="width:70%;">Please select a Category</label>
+                          <a class="close " style="float:right" data-dismiss="modal">&times;</a>
+                      </div>
+                  </div>
+                  <div class="modal-body col-lg-12 col-md-12 col-sm-12" style="height:100%;width:100%;background-color:white;padding:2em;">
+                      <div>
+                          <div class="col-lg-6 col-md-6 col-sm-6">
+                              <button type="button" class="btn-success btn-round-lg btn-round btn-round-sm btn-round-xs" (click)="navigateAssignment();" data-dismiss="modal">Job Matching Skill Level Location</button>
+                              <br />
+                              <br />
+                          </div>
+                          <div class="col-lg-6 col-md-6 col-sm-6">
+                              <button type="button" class="btn-success btn-round-lg btn-round btn-round-sm btn-round-xs" (click)="navigateCustomSearch();" data-dismiss="modal">Customized Job Search</button>
+                              <br />
+                              <br />
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </div> -->
+  <app-dialog [(visible)]="showDialog">
+    <label >Please Select a Category</label>
+    <a class="close pull-right" style="float:right" (click)="showDialog=!showDialog">&times;</a>
+    <hr style="color:black">
+    <div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <button type="button" class="btn-success btn-round-lg btn-round btn-round-sm btn-round-xs" (click)="navigateAssignment();" >Job Matching Skill Level Location</button>
+            <br />
+            <br />
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <button type="button" class="btn-success btn-round-lg btn-round btn-round-sm btn-round-xs" (click)="navigateCustomSearch();" >Customized Job Search</button>
+            <br />
+            <br />
+        </div>
+    </div>
+     </app-dialog>
+   
+</section>

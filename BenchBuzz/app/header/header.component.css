@@ -1,0 +1,36 @@
+
+.btn-round-lg {
+    border-radius: 2em;
+    width: 100%;
+}
+
+.btn-round {
+    border-radius: 2em;
+    width: 100%;
+}
+
+.btn-round-sm {
+    border-radius: 2em;
+    width: 100%;
+}
+
+.btn-round-xs {
+    border-radius: 2em;
+    
+    width: 100%;
+}
+
+button {
+    padding: 1em;
+    width: 100%;
+}
+label {
+    text-align: center;
+}
+.badge{
+    background:yellow;
+    position:relative;
+    top: -20px;
+    left: -35px;
+   }
+

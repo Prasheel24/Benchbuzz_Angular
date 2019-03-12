@@ -1,0 +1,46 @@
+<div class="row">  
+  <div class="" style="overflow:hidden">
+      <!-- <div>
+
+          <div class="nav-side-menu" style="background-color:#00116d;color: white;">
+              <div class="block" >
+                  <div class="block-heading">
+                      <div>
+                          <div class="brand graphik-black " style="color:white; font-size:25px !important">
+                          </div>
+                          <hr  style="border-color:black;">
+                          <div class="brand graphik-black " style="color:white; font-size:20px !important">
+                          </div>
+                          <a href="" class="close-menu acc-cross visible-xs"></a>
+                      </div>
+                      </div>
+                  <div class="menu-list nano " >
+                      <ul class="menu-content nano-content" tabindex="0" style="right: -17px;">                    
+                                     <li class="closed">
+                                          <span id="28" class="parentListItem"><i class="fa-angle-right"></i>Question Category</span>
+                                          <div class="sub-menu" style="background-color: #00116d;color:white;">
+                                              <div class="nano " style="height: 540px;">
+                                                  <div class="subItem-content nano-content" style="right: -17px;">                                                
+                                                    <p id="childList2" class="childListItem listAnswer"><i class="acn acc-angle-right fa fa-angle-right"></i><span class="utterance col-lg-10 col-md-10 col-sm-10" (click)="getQuestion(name)" style="color:white;cursor: pointer;" #name>Common Question</span></p>                                                 
+                                                 </div>
+                                                  <div class="nano-pane" style="display: none;"><div class="nano-slider" style="height: 774px; transform: translate(0px, 0px);"></div></div>
+                                              </div>
+                                          </div>
+                                      </li>
+                      </ul>
+                  </div>   
+              </div>
+          </div>    
+        </div> -->
+  </div>
+  <div class="kenUIBox">
+      <kendo-chat
+       class="has scrollable"
+        [messages]="feed | async"
+        [user]="user"          
+        (sendMessage)="sendMessage($event) "
+        style="max-width: 100% !important;"
+      >
+      </kendo-chat>
+  </div>  
+</div>

@@ -1,0 +1,118 @@
+<div ng-app="myApp" >
+  <div ng-controller="MainCtrl">
+        <form [formGroup]="userForm" novalidate>
+      <div class="container-fluid">
+          <div *ngIf="dropdownCity" class="row">
+              <div class="col-sm-3 col-md-6 col-lg-4"><label style="color:white">City</label></div>
+              <div class="col-sm-9 col-md-6 col-lg-8">
+                    <!-- <angular2-multiselect [data]="dropdownCity" 
+                    [(ngModel)]="selectedCityId" 
+                    [settings]="settingCity" 
+                    (onSelect)="onItemSelect($event)"
+                    (onDeSelect)="OnItemDeSelect($event)"></angular2-multiselect> -->
+                  <select [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChangeCity($event)" selected="city" id="myId1" #myId1>
+                      <OPTION value="-1">--All Cities--</OPTION>
+                      <option *ngFor="let city of dropdownCity" [ngValue]="city.ID">{{city.Item}}</option>
+                  </select>
+              </div>
+          </div>
+          <div *ngIf="dropdownLevel" class="row">
+              <div class="col-sm-3 col-md-6 col-lg-4"><label style="color:white">Level</label></div>
+              <div class="col-sm-9 col-md-6 col-lg-8">
+                  <select [(ngModel)]="selectedLevel" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChangeLevel($event)" selected="level" id="myId2" #myId2>
+                        <OPTION value="-1">--All Levels--</OPTION>  
+                    <option *ngFor="let level of dropdownLevel" [ngValue]="level.ID">{{level.Item}}</option>
+                  </select>
+              </div>
+          </div>
+          <div *ngIf="dropdownCluster" class="row">
+              <div class="col-sm-3 col-md-6 col-lg-4" *ngIf="showCluster"><label style="color:white">Cluster</label></div>
+              <div class="col-sm-9 col-md-6 col-lg-8" *ngIf="showCluster">
+                  <select [(ngModel)]="selectedCluster" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChangeCluster($event)" selected="cluster" id="myId3" #myId3 [disabled]="clusterListDisable">
+                    <OPTION value="-1">--All Clusters--</OPTION>  
+                    <option *ngFor="let cluster of dropdownCluster" [ngValue]="cluster.ID">{{cluster.Item}}</option>
+                  </select>
+              </div>
+              <div style="text-align: center"><label *ngIf="clusterListDisable" style="color:white;margin:5%">No Clusters Found</label></div>
+              
+              <div style="text-align: center"><label *ngIf="clusterListAll" style="color:white;margin:5%">All Clusters Selected</label></div>
+              
+          </div>          
+          
+              <div *ngIf="dropdownSkill" class="row">
+                  <div class="col-sm-3 col-md-6 col-lg-4"><label style="color:white">Skill *</label></div>
+                  <div class="col-sm-9 col-md-6 col-lg-8" >
+                      <angular2-multiselect [data]="dropdownSkill" 
+                  [(ngModel)]="selectedSkillId" 
+                  [settings]="settingSkill" 
+                  (onSelect)="onItemSelect($event)"
+                  (onDeSelect)="OnItemDeSelect($event)" 
+                  formControlName="skills"></angular2-multiselect>
+                </div>
+              </div>
+      </div>  
+    </form>      
+  </div> 
+  <br /> 
+  <br />
+  <div style="text-align: center"><label style="color:white"><b>Note:</b> If you are not able to find your skill i.e. there is no open demand for that skill</label></div>
+
+  <!-- <div class="container-fluid" *ngIf="showSkillName">
+      <div class="row" style="background-color:#199d99;text-align:center">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><label style="color:white">Selected Options</label></div>
+      </div>
+      <div class="row" style="background-color:white">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><label>{{skillName.value}}</label></div><span style="color:#199d99;text-align: center" (click)="removeSkillName(element,$event.target.checked)">Delete Previously Selected Value</span> <br />
+      </div>
+  </div> -->
+  <br />
+  <div align="center" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="color:red;font-weight:bold">
+        <span *ngIf="showSkillName">
+                **Please Select a Skill**
+              </span>
+    <button type="button" (click)="onSubmit()" [disabled]="!userForm.valid" class="btn btn-primary btn-round-lg btn-lg btn-block button" >Search</button>
+    <button type="button" (click)="onRefresh($event)" class="btn btn-primary btn-round-lg btn-lg btn-block button">Refresh</button>   
+      
+  </div>
+</div>
+<br/>
+<br/>
+
+<app-dialog [(visible)]="showDialog">
+           <div>
+           <div class="row">
+               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                   <label style="text-align: center">No Jobs Found!</label>
+               </div>
+           </div>
+           <br />
+           <div class="row">
+               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >                
+       <button (click)="showDialog = !showDialog" class="btn-success btn btn-primary btn-round-lg btn-lg btn-block button">Close</button>
+       <br />
+                   <br />
+               </div>
+           </div>
+       </div>       
+     </app-dialog>
+     <app-dialog [(visible)]="showServiceDialog">
+            <div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label style="text-align: center">{{statusMessage}}</label>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >                
+        <button (click)="showDialog = !showDialog" routerLink="/mainpage" class="btn-success btn btn-primary btn-round-lg btn-lg btn-block button">Close</button>
+        <br />
+                    <br />
+                </div>
+            </div>
+        </div>       
+      </app-dialog>
+      <br/>
+      <br/>
+      <br/>
+      <br/>

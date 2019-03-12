@@ -1,0 +1,49 @@
+<div class="container-fluid" *ngIf="showHeader">
+    <div class="row" style="text-align:center">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:0.7em"></div>
+        <div (click)="backClicked()" class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+            <i *ngIf="showBack">
+                <img src="assets/images/ic_back_white_png.png" style="width:1.5em;height:auto;cursor: pointer;" />
+            </i>
+        </div>
+      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+            <a routerLinkActive="active" id="homeLink" routerLink="/mainpage">
+                <label style="color:white;text-align:center;margin-left:19%" id="title" #title><b><u style="cursor: pointer;">iBenchBuzz</u></b></label>
+            </a>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 pull-right" *ngIf="notifications && showNotification" style="width:2em;height:1em;margin-right:5%">                   
+          <a routerLinkActive="active" id="notification" (click)="showDialog = !showDialog" style="color:white;" ng-click="getNotifications()" >
+                <i class="glyphicon glyphicon-bell notification-icon" style="font-size:1.33em;cursor: pointer;"></i>
+                <span *ngIf="seenNotification" class="badge badge-notify" style="background:#FCB322;position:relative;top: -2.9em;left: 0.7em;cursor: pointer;">{{notificationLength}}</span>         
+          </a>        
+          </div> 
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 pull-right" *ngIf="showHomeRight" style="width:2em;height:1em;margin-right:5%">                   
+              <a routerLinkActive="active" routerLink="/mainpage" style="color:white;">
+                   <i>
+                      <img src="assets/images/ic_home_white.png" style="width:1.5em;height:auto" />
+                   </i>
+              </a>        
+          </div>           
+    </div>
+  </div>
+  <hr *ngIf="showHeader" />
+  <app-dialog [(visible)]="showDialog">
+   <label style="text-align: center">Notifications</label>
+   <hr style="color:black">
+      <div *ngIf="notifications">
+          <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngFor="let noti of notifications">
+                  <label style="text-align: center">{{noti.MsgNotification}}</label>
+              </div>
+          </div>
+          <br />
+          <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >                
+      <button (click)="closeNotification()" class="btn-success btn btn-primary btn-round-lg btn-lg btn-block button">Close</button>
+      <br />
+                  <br />
+              </div>
+          </div>
+      </div>
+      <div *ngIf="!(notifications)">No Notifications to Display</div>
+    </app-dialog>

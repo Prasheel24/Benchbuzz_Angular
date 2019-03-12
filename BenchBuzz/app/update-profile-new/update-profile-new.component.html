@@ -1,0 +1,305 @@
+<div ng-app="ngApp">
+  <div class="container">
+      <h4 style="text-align:center"><b>Please upload your CV</b></h4>
+      <br />
+      <div class="row">
+          <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+              <br />
+              <a target="_self" href="{{Logo}}" download="{{file}}"><span style="color:royalblue"><b>UploadedCV</b></span></a>
+          </div> -->
+          <form [formGroup]="frm">
+          <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 image-upload form-group" style="text-align:center;">
+              <label for="fileInput">
+                  <img src="assets/images/upload.png"  />       
+                  <br/>           
+              <p class="btn btn-primary btn-round-lg btn-lg btn-block" style="color:white;padding:2%;cursor: pointer;">Browse</p>
+              <input id="fileInput" formControlName="file" required type="file" (change)="fileChange($event)" accept=".pdf" #fileInput style="display:none" />              
+            </label>
+            </div>
+          </form>
+      </div>
+      
+      <div class="row" style="text-align:center">{{fileName}}</div>
+      
+      <div class="row" style="text-align:center">
+          <span><b>(Select CV (.pdf) in Accenture format Only)<br />(Restrict file size upto 3MB only)</b></span>
+      </div>
+      <br />
+       <div class="btn-round-lg" (click)="checkBoxMLV= !checkBoxMLV" style="color:white;background-color:#15bbfa;padding:2%;cursor:pointer;text-align: center">Please Click here to Update any LOA, Maternity leave or Vacation Planned</div>
+
+      <br />
+      <!-- <div class="form-group" *ngIf="checkBoxMLV">
+          <div class="row">
+              <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"><label>Maternity Leave Planned</label></div>
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                  <label class="switch">
+                      <input type="checkbox" name="checkBoxMaternity" [(ngModel)]="checkBoxMaternity" (ngModelChange)="onChangeMaternity($event)">
+                      <span class="slider round"></span>
+                  </label>
+              </div>
+          </div>
+          <div *ngIf="checkBoxMaternity">
+              <div class="row">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">From:&nbsp;<input type="date" id="mFromDate" placeholder="Start Date" [(ngModel)]="MaternityFrom"  /></div>
+ 
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">To:&nbsp;<input type="date" id="mToDate" placeholder="End Date" [(ngModel)]="MaternityTo"  /></div>
+              </div>
+          </div>
+          <br/>
+          <div class="row">
+              <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"><label>LOA Planned</label></div>
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                  <label class="switch">
+                      <input type="checkbox" name="checkBoxLOA" [(ngModel)]="checkBoxLOA" (ngModelChange)="onChangeLOA($event)">
+                      <span class="slider round"></span>
+                  </label>
+              </div>
+          </div>
+          <div *ngIf="checkBoxLOA">
+              <div class="row">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">From:&nbsp;<input type="date" id="lFromDate" placeholder="Start Date" [(ngModel)]="LOAFrom"  /></div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">To:&nbsp;<input type="date" id="lToDate" placeholder="End Date" [(ngModel)]="LOATo"  /></div>
+              </div>
+          </div>
+          <br/>
+          <div class="row">
+              <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"><label>Vacation Planned</label></div>
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                  <label class="switch">
+                      <input type="checkbox" name="checkBoxVacation" [(ngModel)]="checkBoxVacation" (ngModelChange)="onChangeVacation($event)">
+                      <span class="slider round"></span>
+                  </label>
+              </div>
+          </div>
+          <br/>
+          <div *ngIf="checkBoxVacation">
+              <div class="row">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">From:&nbsp;<input type="date" id="vFromDate" placeholder="Start Date" [(ngModel)]="VacationFrom"  /></div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">To:&nbsp;<input type="date" id="vToDate" placeholder="End Date" [(ngModel)]="VacationTo"  /></div>
+              </div>
+          </div>
+      </div> -->
+      <div class="form-group" *ngIf="checkBoxMLV">
+            <div class="row">
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"><label>Maternity Leave Planned</label></div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label class="switch">
+                        <input type="checkbox" name="checkBoxMaternity" [(ngModel)]="checkBoxMaternity" (ngModelChange)="onChangeMaternity($event)">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            <div *ngIf="checkBoxMaternity">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">From:
+                        <!-- <input type="date" id="mFromDate" placeholder="Start Date" [(ngModel)]="MaternityFrom"  /> -->
+                        <form #myForm="ngForm" class="datepicker" novalidate>
+                              <my-date-picker name="mydate1" [options]="myDatePickerOptions"
+                                              [(ngModel)]="modelMFrom" required></my-date-picker>
+                            </form>
+                            
+                        <!-- <div *ngIf="checkBoxMaternity && MaternityFrom" style="font-size: smaller;padding:3%">    Date Selected: {{modelMFrom['jsdate'] | date}}</div> -->
+                      </div>
+                    
+  
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">To:
+                        <!-- <input type="date" id="mToDate" placeholder="End Date" [(ngModel)]="MaternityTo"  /> -->
+                        <form #myForm="ngForm" class="datepicker" novalidate>
+                              <my-date-picker name="mydate2" [options]="myDatePickerOptions"
+                                              [(ngModel)]="modelMTo" disableUntil="modelMFrom['date']" required></my-date-picker>
+                            </form>                      
+                        <!-- <div *ngIf="checkBoxMaternity && MaternityTo" style="font-size: smaller;padding:3%">      Date Selected: {{modelMTo['jsdate'] | date}}</div></div> -->
+                    </div>
+                </div>
+           </div>
+            <br/>
+            <div class="row">
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"><label>LOA Planned</label></div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label class="switch">
+                        <input type="checkbox" name="checkBoxLOA" [(ngModel)]="checkBoxLOA" (ngModelChange)="onChangeLOA($event)">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            <div *ngIf="checkBoxLOA">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">From:
+                        <!-- <input type="date" id="lFromDate" placeholder="Start Date" [(ngModel)]="LOAFrom"  />
+                        <div *ngIf="checkBoxLOA && LOAFrom" style="font-size: smaller;padding:3%">      Date Selected: {{LOAFrom | date}}</div>-->
+                        <form #myForm="ngForm" class="datepicker" novalidate>
+                              <my-date-picker name="mydate3" [options]="myDatePickerOptions"
+                                              [(ngModel)]="modelLFrom" required></my-date-picker>
+                            </form>
+                      </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">To:
+                        <!-- <input type="date" id="lToDate" placeholder="End Date" [(ngModel)]="LOATo"  />
+                        <div *ngIf="checkBoxLOA && LOATo" style="font-size: smaller;padding:3%">      Date Selected: {{LOATo | date}}</div> -->
+                        <form #myForm="ngForm"class="datepicker" novalidate>
+                              <my-date-picker name="mydate4" [options]="myDatePickerOptions"
+                                              [(ngModel)]="modelLTo" required></my-date-picker>
+                            </form>
+                      </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"><label>Vacation Planned</label></div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <label class="switch">
+                        <input type="checkbox" name="checkBoxVacation" [(ngModel)]="checkBoxVacation" (ngModelChange)="onChangeVacation($event)">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            <div *ngIf="checkBoxVacation">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">From:
+                        <!-- <input type="date" id="vFromDate" placeholder="Start Date" [(ngModel)]="VacationFrom"  />
+                        <div *ngIf="checkBoxVacation && VacationFrom" style="font-size: smaller;padding:3%">        Date Selected: {{VacationFrom | date}}</div> -->
+                        <form #myForm="ngForm" class="datepicker" novalidate>
+                              <my-date-picker name="mydate5" [options]="myDatePickerOptions"
+                                              [(ngModel)]="modelVFrom" required></my-date-picker>
+                            </form>
+                      </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">To:
+                        <!-- <input type="date" id="vToDate" placeholder="End Date" [(ngModel)]="VacationTo"  />
+                        <div *ngIf="checkBoxVacation && VacationTo" style="font-size: smaller;padding:3%">        Date Selected: {{VacationTo | date}}</div> -->
+                        <form #myForm="ngForm" class="datepicker" novalidate>
+                              <my-date-picker name="mydate6" [options]="myDatePickerOptions"
+                                              [(ngModel)]="modelVTo" required></my-date-picker>
+                            </form>
+                      </div>
+                </div>
+            </div>
+        </div>
+      <br />
+          <div class="row">
+              <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9"><h4>Are you willing to cross train?</h4></div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                  <label class="switch">
+                      <input type="checkbox" name="checkBoxCrossTrain" [(ngModel)]="checkBoxCrossTrain" (ngModelChange)="onChangeCrossTrain($event)">
+                      <span class="slider round"></span>
+                  </label>
+              </div>
+          </div>
+          <br />
+          <div class="row">
+              <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9"><h5>Please select your current location</h5></div>
+          </div>
+          <select [(ngModel)]="selectedCityId" name="selectedCity" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChangeCity($event)" selected="city" id="myId1" #myId1 required>
+              <option *ngFor="let city of dropdownCity" [ngValue]="city.ID">{{city.Item}}</option>
+          </select>
+          <br />
+          <br />
+          <div class="row">
+              <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9"><h4>Are you willing to relocate?</h4></div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                  <label class="switch">
+                      <input type="checkbox" name="checkBoxRelocate" [(ngModel)]="checkBoxRelocate" (ngModelChange)="onChangeRelocate($event)">
+                      <span class="slider round"></span>
+                  </label>
+              </div>
+          </div>
+          <div  *ngIf="checkBoxRelocate">
+              <div class="row">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><label>First Preference</label></div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                      <select [(ngModel)]="selectedFirstPrefCityId" name="selectedCity1" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChangeFirstPrefCity($event)" selected="city1" id="myId2" #myId2>
+                          <option *ngFor="let city of dropdownCity" [ngValue]="city.ID">{{city.Item}}</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><label>Second Preference</label></div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                      <select [(ngModel)]="selectedSecondPrefCityId" name="selectedCity2" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChangeSecondPrefCity($event)" selected="city2" id="myId3" #myId3>
+                          <option *ngFor="let city of dropdownSecondPrefCity" [ngValue]="city.ID">{{city.Item}}</option>
+                      </select>
+                  </div>
+              </div>
+          </div>
+          <br />
+          <div class="row">
+              <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9"><h4>Are you a visa holder?</h4></div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                  <label class="switch">
+                      <input type="checkbox" name="checkBoxVisa" [(ngModel)]="checkBoxVisa" (ngModelChange)="onChangeVisa($event)">
+                      <span class="slider round"></span>
+                  </label>
+              </div>
+          </div>
+          <div class="form-group" *ngIf="checkBoxVisa">
+              <div class="row">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><label>Country</label></div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                      <select [(ngModel)]="selectedCountryId" name="selectedCountry" (ngModelChange)="onChangeCountry($event)" selected="country" id="myId4" #myId4>
+                          <option *ngFor="let country of dropdownCountry" [ngValue]="country.ID">{{country.Item}}</option>
+                      </select>
+                  </div>
+              </div>
+          </div>      
+          <br/>
+         
+          <div class="container-fluid">
+                <div class="row" >
+                      <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7"><label style="font-size:small">Alternate Contact Number</label></div>
+                      <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                            <input type="number" placeholder="10 Digit Contact No." onkeypress='return event.charCode >= 48 && event.charCode <= 57' pattern="[0-9]*" name="AlternateContactNumber" required maxlength="10" min="0" [(ngModel)]="AlternateContactNumber" (ngModelChange)="AlternateContactNumber = $event" style="width:100%;padding:2%"/>
+                        </div>
+                    
+                   </div>
+                <br />             
+                <div class="row">
+                      <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7"><label style="font-size:small">Any Additional Remarks</label></div>
+                      <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                            <input type="text" placeholder="Add Remarks" style="width:100%;padding:2%" />
+                        </div>                  
+                    </div>
+                <br />
+            </div>
+           
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:1em">           
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <p *ngIf="frm.controls.file.errors?.required" style="text-align:center;color:red">**Valid File Upload is required to submit the form!</p>
+              <button type="button" class="btn btn-primary btn-round-lg btn-lg btn-block" [disabled]="!frm.valid" (click)="onSubmit($event)">Submit</button>
+              <br />
+          </div>
+      </div>
+  </div>
+</div>
+
+<app-dialog [(visible)]="showDialog">
+        <div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <label style="text-align: center">{{statusMessage}}</label>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >                
+    <button (click)="showDialog = !showDialog" class="btn-success btn btn-primary btn-round-lg btn-lg btn-block button">Close</button>
+    <br />
+                <br />
+            </div>
+        </div>
+    </div>       
+  </app-dialog>
+  <app-dialog [(visible)]="showUpdateDialog">
+        <div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <label style="text-align: center">Data Inserted Successfully</label>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >                
+    <button (click)="showDialog = !showDialog" class="btn-success btn btn-primary btn-round-lg btn-lg btn-block button">Close</button>
+    <br />
+                <br />
+            </div>
+        </div>
+    </div>       
+  </app-dialog>

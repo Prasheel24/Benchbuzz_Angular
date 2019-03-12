@@ -1,0 +1,78 @@
+<section id="applicationStaus-content" ng-controller="appStatusCtrl">
+  <div class="container-fluid"  style="font-size:smaller">
+      <div class="row" style="background-color:#bfbcbc;color:black;font-weight:bolder;text-align:center;border:double #bfbcbc">
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" >
+              <span>Skill</span>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+              <span>Client</span>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <span>Application Status</span>
+            </div>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" >
+              <span>RRD</span>
+          </div>
+          
+      </div>
+  </div>
+  <div class="container-fluid" style="background-color:white;border:double white;font-size:smaller">
+      <ng-container *ngFor="let application of applicationData;let i=index">
+          <div *ngIf="applicationData" style="cursor: pointer;">
+              <div (click)="moveToAssignmentDetails(application.RRDNumber)" class="row" style="background-color:white;color:black;text-align:center;border:double white;">
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-color:white;border:double white;">
+                      <span>{{application.SkillName}}</span>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-color:white;border:double white;word-wrap:break-word">
+                      <span>{{application.ClientName}}</span>
+                  </div>                  
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background-color:white;border:double white;">
+                      <span>{{application.ApplicationStatus}}</span>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" selected="RRD" ng-model="selectedRRD" style="background-color:white;border:double white;">
+                        <span style="color:royalblue">{{application.RRDNumber}}</span>
+                    </div>
+                    <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="background-color:white;border:double grey;">
+                            <span>ApplicationStatus</span>
+                        </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10" style="background-color:white;border:double grey;">
+                            <span style="color:royalblue">{{application.ApplicationStatus}}</span>
+                    </div> -->
+              </div>
+          </div>
+      </ng-container>
+      <div *ngIf="applicationData && applicationData.length==0" class="row">
+          <div style="background-color:white;border:double white" ><span>{{statusMessage}}</span></div>
+      </div>
+      <div *ngIf="!applicationData" class="row">
+          <div style="background-color:white;border:double white" ><span>{{statusMessage}}</span></div>
+      </div>
+  </div>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:1em">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="showButton">
+          <button type="button" class="btn btn-primary btn-round-lg btn-lg btn-block" (click)="navigateMainPage()">Move to Main Page</button>
+          <br />
+      </div>
+  </div>    
+</section>
+<app-dialog [(visible)]="showDialog">
+    <!-- <label style="text-align: center">Message</label>
+    <hr style="color:black"> -->
+       <div >
+           <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                   <label style="text-align: center">Sorry! The Role is closed.</label>
+                   <br/>
+                   <label style="text-align: center">Redirecting..</label>
+               </div>
+           </div>
+           <!-- <br />
+           <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >                
+     <button (click)="showDialog = !showDialog" class="btn-success btn btn-primary btn-round-lg btn-lg btn-block button">Going to Home Page</button> 
+       <br />
+                   <br />
+               </div>
+           </div> -->
+       </div>      
+     </app-dialog>

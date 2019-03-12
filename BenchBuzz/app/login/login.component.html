@@ -1,0 +1,20 @@
+<!-- <div class="container" *ngIf="hideLogin" (keydown)="keyDownFunction($event)" style="margin-top:25%">
+    <h2 style="text-align:center;color:white">Login</h2>    
+      <div class="form-group" >
+        <label for="entId" style="color:white">Enterprise ID:</label>
+        <input type="entId" [(ngModel)]="enterpriseId" class="form-control" id="entId" placeholder="Enter Enterprise ID">
+      </div>  
+      <div style="text-align:center">
+      <button  type="submit" (click)="login()" class="btn btn-default">Submit</button>
+      </div>         
+  </div> -->
+  <div *ngIf="hideLogin" style="margin-top:35%">
+    
+    <img src="assets/images/preloader (1).gif" class="loader" style="width: 9%;height: auto;" />    
+    <!-- <h5 style="color:white;text-align:center;">Loading..</h5> -->
+</div>
+  <div *ngIf="!hideLogin">
+    <header *ngIf="hideHeader"></header>
+    <router-outlet></router-outlet>
+    <footer></footer>
+  </div>

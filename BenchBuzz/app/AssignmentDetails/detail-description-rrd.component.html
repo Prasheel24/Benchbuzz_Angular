@@ -1,0 +1,184 @@
+
+<section id="detailDesc-content" ng-controller="detailDescCtrl">
+  <div class="container-fluid">
+      <!-- <div class="container" *ngIf="assignments && assignments.length==1">
+          <div class="row">
+              <div id="style" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 tab" style="text-align:center;padding:3%;color:dimgrey;font-weight:bold;background-color:#ddd" (click)="showDetails()"><span>Details</span></div>
+              <div id="style" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 tab" style="text-align:center;padding:3%;color:dimgrey;font-weight:bold;background-color:#ddd" (click)="showDescription()"><span>Description</span></div>
+          </div>
+          <br />
+      </div> -->
+      <nav class="navbar nav" style="background-color: #ddd;border-color:#ddd"  *ngIf="assignments && assignments.length==1">
+        <div class="container-fluid" style="margin-left: 10%;">
+        <ul class="nav navbar-nav" style="width:100%">
+            <li class="active col-lg-6 col-md-6 col-sm-6 col-xs-6" style="width:50%;text-align:center;border-right:2px solid steelblue"><a (click)="showDetails()"><span>Details</span></a></li>
+            <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="width:50%;text-align:center"><a (click)="showDescription()"><span>Description</span></a></li>
+          </ul>
+        </div>
+      </nav>
+      <div *ngIf="Description && !Details">
+          <table class="table" cellpadding="2" style="text-align:center;">
+              <ng-container *ngFor="let assignment of assignments;">
+                  <tr>
+                      <td style="border:none;"><label>RRDNumber</label></td>
+                      <td style="border:none;"><label>ClientName</label></td>
+                  </tr>
+                  <tr>
+                      <td style="border:none;">{{assignment.RRDNumber}}</td>
+                      <td style="border:none;">{{assignment.ClientName}}</td>
+                  </tr>
+                  <!--<br />-->
+                  <tr>
+                      <td style="border:none;"><label>Skill</label></td>
+                      <td style="border:none;"><label>Assigned Role</label></td>
+                  </tr>
+                  <tr>
+                      <td style="border:none;">{{assignment.SkillName}}</td>
+                      <td style="border:none;">{{assignment.AssignedRole}}</td>
+                  </tr>
+                  <!--<br />-->
+                  <tr>
+                      <td style="border:none;"><label>Required By</label></td>
+                      <td style="border:none;"><label>Location</label></td>
+                  </tr>
+                  <tr>
+                      <td style="border:none;">{{assignment.ReqdBy}}</td>
+                      <td style="border:none;">{{assignment.Location}}</td>
+                  </tr>
+                  <!--<br />-->
+                  <tr>
+                      <td style="border:none;"><label>Career Level</label></td>
+                      <td style="border:none;"><label>POC Name</label></td>
+                  </tr>
+                  <tr>
+                      <td style="border:none;">{{assignment.CareerLevel}}</td>
+                      <td style="border:none;">{{assignment.PocName}}</td>
+                  </tr>
+                  <!--<br />-->
+              </ng-container>
+              <tr *ngIf="assignments && assignments.length==0">
+                  <td colspan="12">No Assignments to Display</td>
+              </tr>
+              <tr *ngIf="!assignments">
+                  <td colspan="12">{{statusMessage}}</td>
+              </tr>
+          </table>
+      </div>
+
+      <div *ngIf="Details && assignments && assignments.length==1">
+          <table *ngIf="DetailParagraph" class="table" cellpadding="3" style="border:none;text-align:left">
+            <tr>                  
+                <td style="border:none;"><label>Role</label></td>
+                <td style="border:none;">{{roleString}}</td>
+            </tr>
+            <tr>                
+                <td style="border:none;"><label>Role Description</label></td>
+                <td style="border:none;">{{descString}}</td>
+            </tr>
+            <tr>                  
+                <td style="border:none;"><label>Mandatory Skills</label></td>
+                <td style="border:none;">{{mustString}}</td>
+            </tr>
+            <!-- <tr>
+                <td style="border:none;"><label>Optional Skills</label></td>
+                <td style="border:none;">{{optionalString}}</td>
+            </tr> -->
+              <tr *ngIf="assignments && assignments.length==0">
+                  <td colspan="12">No Assignments to Display</td>
+              </tr>
+              <tr *ngIf="!assignments">
+                  <td colspan="12">{{statusMessage}}</td>
+              </tr>
+          </table>
+      </div>
+      <div *ngIf="!assignments" class="row">
+          <div style="background-color:white;border:double white"><span>Loading Data Please Wait...</span></div>
+      </div>
+
+  </div>
+
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:1em">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="showApplyButton">
+          <button type="button" class="btn btn-primary btn-round-lg btn-lg btn-block" data-toggle="modal" data-target="#myModal" (click)="applyForAssignment()">Apply</button>
+          <br />
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="showFavButton">
+          <button type="button" class="btn btn-primary btn-round-lg btn-lg btn-block" data-toggle="modal" data-target="#myModal" (click)="applyFavourite()">Favourite</button>
+          <br />
+      </div>
+  </div>
+  <div class="container">
+      <div tabindex="-5" class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+
+              <div class="modal-content">
+                  <div class="modal-header " style="background:#ffffff;text-align:center">
+                      <div style="width:auto">
+                          <label class="modal-title" >Status Message</label>
+                          <a class="close " style="float:right" data-dismiss="modal">&times;</a>
+                      </div>
+                  </div>
+                  <div class="modal-body col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:100%;width:100%;background-color:white;padding:2em;text-align:center">
+                      <div>
+                          <div class="row">
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                   
+                                  <label>Data Inserted Successfully</label>
+                              </div>
+                          </div>
+                          <br />
+                          <div class="row">
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                  <button type="button" class="btn-success btn-round-lg btn-round btn-round-sm btn-round-xs" (click)="navigateMainPage();" data-dismiss="modal">Ok</button>
+                                  <br />
+                                  <br />
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+
+</section>
+<app-dialog [(visible)]="showDialog">
+        <label style="text-align: center">Message</label>
+        <hr style="color:black">
+           <div >
+               <div class="row">
+                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                       <label style="text-align: center">Data has been inserted Successfully</label>
+                   </div>
+               </div>
+               <br />
+               <div class="row">
+                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >                
+           <button (click)="showDialog = !showDialog" class="btn-success btn btn-primary btn-round-lg btn-lg btn-block button">Close</button>
+           <br />
+                       <br />
+                   </div>
+               </div>
+           </div>      
+         </app-dialog>
+
+         <app-dialog [(visible)]="showErrorDialog">
+            <label style="text-align: center">Message</label>
+            <hr style="color:black">
+               <div >
+                   <div class="row">
+                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                           <label style="text-align: center">{{statusMessage}}</label>
+                       </div>
+                   </div>
+                   <br />
+                   <div class="row">
+                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >                
+               <button (click)="showErrorDialog = !showErrorDialog" class="btn-success btn btn-primary btn-round-lg btn-lg btn-block button">Close</button>
+               <br />
+                           <br />
+                       </div>
+                   </div>
+               </div>      
+             </app-dialog>
+

@@ -1,0 +1,74 @@
+.btn-round-lg {
+    border-radius: 23px;
+}
+
+.btn-round {
+    border-radius: 17px;
+}
+
+.btn-round-sm {
+    border-radius: 15px;
+}
+
+.btn-round-xs {
+    border-radius: 11px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+label {
+    font-size: 1em;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: white;
+}
+
+    a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+.previous {
+    color: black;
+}
+
+.round {
+    border-radius: 50%;
+}
+
+table {
+    color: #369;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid #369;
+    padding: 5px;
+}
+
+th {
+    border: 1px solid #369;
+    padding: 5px;
+}
+
+.navbar-default .navbar-nav > li > a.router-link-active {
+    color: #f00;
+    background-color: white;
+}
+
+span {
+    text-align: center;
+}
+.container-fluid {
+padding-left:0;
+padding-right:0;
+}
+@media only screen and (min-width: 768px) {
+font-size: xx-large;
+ }
